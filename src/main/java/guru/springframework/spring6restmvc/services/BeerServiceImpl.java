@@ -60,6 +60,11 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
+    public void deleteById(UUID beerId) {
+        beerMap.remove(beerId);
+    }
+
+    @Override
     public void updateBeerById(UUID beerId, Beer beer) {
         Beer existing = beerMap.get(beerId);
         existing.setBeerName(beer.getBeerName());
@@ -88,6 +93,7 @@ public class BeerServiceImpl implements BeerService {
 
         Beer savedBeer = Beer.builder()
                 .id(UUID.randomUUID())
+                .version(1)
                 .createdDate(LocalDateTime.now())
                 .updateDate(LocalDateTime.now())
                 .beerName(beer.getBeerName())
